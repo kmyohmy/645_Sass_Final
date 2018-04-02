@@ -1,0 +1,269 @@
+//Mixins!
+
+@mixin layouts
+	clear: both
+	width: 100% !important
+	margin: 20px auto
+	text-align: center
+	justify-content: center
+
+@mixin dontDisplay
+	display: none
+	
+@mixin layoutsPortrait
+	clear: both
+	width: 100% !important
+	margin: 10px auto
+	text-align: center
+	justify-content: center
+
+@mixin headerStuff($Weight, $Size, $Height)
+	font-weight: $Weight
+	font-size: $Size
+	line-height: $Height
+	
+@mixin imgplacement ($positionX,$positionY)
+	background: url('../images/social-media.png') $positionX $positionY
+
+//VARIABLES
+$Grey: #666
+$Orange: #E65C43
+$White: #FFF
+$break-small: 479px
+$break-medium: 768px
+$break-large: 960px
+$ScreenWidth: 960px
+$ScreenMarginLeft: 10px
+$ScreenMarginRight: 10px
+$contentWidth: $ScreenWidth - ($ScreenMarginLeft + $ScreenMarginRight)
+$logo: url('../images/logo.png')
+
+//---------------------------------------------------------------//
+
+body
+	font: 
+		family: 'Roboto', sans-serif
+		size: 1.5em
+	line-height: 2em
+	background: url('../images/bg.gif') #FFF repeat-x
+main 
+	width: $contentWidth
+	margin: 0 auto
+	padding: 0 10px
+nav 
+	width: 540px
+	height: 190px
+	float: left
+	text-align: right
+	margin-left: 0
+	padding: 0
+	
+	& ul
+		list-style-type: none
+		margin-top: 95px 
+		padding: 0
+		margin-left: 0
+		
+		& li
+			display: inline
+			font-size: 0.8em
+			margin-left: 5px
+			& a 
+				color: $Orange
+				text-decoration: none
+				font-size: 1em
+				&:hover
+					color: $Grey
+
+figure 
+	width: 400px
+	height: 170px
+	background: $logo no-repeat 0 50px
+	float: left	
+	padding: 0
+	margin: 0
+
+header
+	width: inherit
+	clear: both
+	text-align: center
+	padding-top: 40px
+	& img
+		max-width: 100%
+		height: auto
+		
+	& h1 
+		@include headerStuff(100, 4em, .7)
+		color: $Orange
+
+	& h2
+		@include headerStuff(900, 2.5em, 0)
+		color: $White
+		margin-bottom: 70px!important
+	& h3
+		@include headerStuff(400, 2em, 0)
+		color: $Grey
+		margin-bottom: 50px
+	& p 
+		text-align: center
+	
+footer
+	width: 100%
+	height: 120px
+	background: #30353D
+	text-align: center
+	color: $White
+	padding-top: 50px
+
+.greybar
+	width: 100%
+	height: 90px
+	background: #F5F6F6
+	clear: both
+	padding-top: 30px
+
+#headline 
+	width: 100%
+	height: 130px
+	background: #F25C43
+	text-align: center
+	margin: 0 auto
+	
+	& h1
+		color: $White
+		font-size: 2.5em
+		font-weight: 100
+		padding-top: 50px
+				
+
+//10px each side margin
+
+$ColumnWidth: ($contentWidth / 2 ) - 10px
+#content
+	width: $contentWidth
+	margin: 20px auto
+
+	& h3
+		color: $Grey
+		font-size: 2em
+		font-weight: 400
+		padding-top: 10px
+	& #products
+		width: $ColumnWidth
+		float: left
+		
+		& img
+			float: left
+			margin-right: 20px
+
+		& article
+			margin-bottom: 40px
+		& h4
+			line-height: 1em
+	& testimonials
+		width: $ColumnWidth
+		float: right
+.social-media
+	margin: 0 auto
+	width: 165px
+	& div
+		float: left
+		margin-right: 5px
+		&.one
+			@include imgplacement (0, 0)
+		&.two
+			@include imgplacement (-38px, 0)
+		&.three 
+			@include imgplacement (-76px, 0)
+		&.four
+			@include imgplacement (-114px, 0)
+	& a
+		display: block
+		width: 36px
+		height: 36px
+		text-indent: -9999px
+
+
+
+////-----------------------------------------//
+//EXTRA NOTES ABOUT RESPONSIVENESS
+///*Media Query*/
+///*768-960 - Tablet */
+//@media screen and (max-width: $break-medium) {
+//figure 
+//	@include layouts
+//	height: 100px
+//	background-position: center
+//nav 
+//	@include layouts
+//	height: 44px
+//header 
+//	& img
+//		width: 95%
+//		margin-top: 60px
+//		height: auto
+//		justify-content: center
+//	& h1
+//		margin-top: 60px
+//		font-size: 3em
+//
+//
+//// mobile landscape*/
+//
+//@media screen and (max-width: $break-small) {
+//	
+//figure
+//	@include layoutsPortrait
+//	height: 100px
+//	background-position: center
+//nav
+//	@include layoutsPortrait
+//	height: 44px
+//	font-size: .8em
+//	padding-top: 30px
+//ul
+//	& li
+//		margin-left: 10px
+//header 
+//	& img
+//		width: 95%
+//		margin-top: 60px
+//		height: auto
+//		justify-content: center
+//	& h1
+//		margin-top: 60px
+//		font-size: 2em
+//	& h2
+//		text-align: center
+//		color: $White
+//		font-weight: 900
+//		font-size: 1.25em
+//		line-height: 0
+//	& h3
+//		text-align: center
+//		color: $Grey
+//		font-weight: 400
+//		font-size: 1.5em
+//		line-height: 0
+//		margin-bottom: 50px
+//	& p
+//		padding-top: 20px
+//#headline 
+//	& h1
+//		color: $White
+//		font-size: 2.2em
+//		font-weight: 100
+//		padding-top: 20px
+//article
+//	&:nth-of-type(2)
+//		display: none
+//#content
+//	& #products
+//		& img
+//			@include dontDisplay
+//	& #testimonials
+//		@include dontDisplay
+//#greybar
+//	@include dontDisplay
+
+//}
